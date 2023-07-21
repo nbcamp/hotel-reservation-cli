@@ -34,11 +34,12 @@ class ChargeCommand: Command {
                 continue
             }
             
-            let updatedPoint = user.point + value
-            if let error = user.updatePoint(updatedPoint) {
-                io.output("Error: \(error)")
+            let point = user.point + value
+            if point < 0 {
+                io.output("[ERROR] 0보다 작은 값으로 변경할 수 없습니다.")
                 continue
             }
+            user.point = point
             break
         }
         io.output("\n포인트 충전에 성공했습니다. 총 보유하신 포인트: \(user.point)P")

@@ -1,7 +1,7 @@
 import Foundation
 
-final class InMemoryStorage: Storage {
-    static var shared: InMemoryStorage { InMemoryStorage() }
+class InMemoryStorage: Storage {
+    static var shared: InMemoryStorage = InMemoryStorage()
     private var storage: [String: String] = [:]
 
     func getItem(key: String) -> String? {
