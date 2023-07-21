@@ -8,7 +8,7 @@ class App {
     func register(command: Command) {
         commands.append(command)
     }
-    
+
     func run(io: IOInterface) {
         while true {
             let command = chooseService(io: io)
@@ -16,7 +16,7 @@ class App {
         }
         
     }
-    
+
     private func chooseService(io: IOInterface) -> Command {
         io.output("------Welcome------")
         for (index, command) in commands.enumerated() {

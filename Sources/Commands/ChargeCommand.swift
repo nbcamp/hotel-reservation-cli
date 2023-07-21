@@ -3,15 +3,15 @@ import Foundation
 class ChargeCommand: Command {
     var name: String { "호텔 포인트 충전" }
 
-    var user: User
     var io: IOInterface
+    var user: User
 
     init(
-        user: User,
-        io: IOInterface
+        io: IOInterface,
+        user: User
     ) {
-        self.user = user
         self.io = io
+        self.user = user
     }
 
     func execute() {
