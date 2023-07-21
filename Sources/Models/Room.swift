@@ -1,4 +1,4 @@
 struct Room: Model {
-    var name: String
-    var price: Int
+    var id: ID = { Identifier.shared.get(from: User.self) }()
+    var rate: Int
 }

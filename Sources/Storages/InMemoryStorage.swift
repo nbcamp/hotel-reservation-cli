@@ -2,6 +2,7 @@ import Foundation
 
 class InMemoryStorage: Storage {
     static var shared: InMemoryStorage = InMemoryStorage()
+
     private var storage: [String: String] = [:]
 
     func getItem(key: String) -> String? {
@@ -19,4 +20,6 @@ class InMemoryStorage: Storage {
     func clear() {
         storage = [:]
     }
+    
+    private init() {}
 }

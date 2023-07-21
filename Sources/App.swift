@@ -3,13 +3,17 @@ import Foundation
 class App {
     static let shared = App()
 
-    var commands: [Command] = []
+    lazy var commands: [Command] = []
+    var storage: Storage?
 
     func register(command: Command) {
         commands.append(command)
     }
 
-    func run(io: IOInterface) {
+    func run(
+        io: IOInterface,
+        storage: Storage? = nil
+    ) {
         while true {
             let command = chooseService(io: io)
             command.execute()

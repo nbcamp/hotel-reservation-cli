@@ -1,5 +1,6 @@
-protocol Model {}
+import Foundation
 
-extension Model {
-    var id: ID { Identifier.shared.get(model: self) }
+protocol Model: Codable {
+    var id: ID { get }
 }
+
