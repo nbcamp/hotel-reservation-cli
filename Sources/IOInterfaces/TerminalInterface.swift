@@ -1,6 +1,6 @@
 import Foundation
 
-final class TerminalInterface: UserInterface {
+final class TerminalInterface: IOInterface {
     static var shared: TerminalInterface { TerminalInterface() }
     
     func output(_ message: String) {

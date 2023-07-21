@@ -1,6 +1,6 @@
 import Foundation
 
-protocol UserInterface {
+protocol IOInterface {
     static var shared: Self { get }
 
     func output(_ message: String)
@@ -8,7 +8,7 @@ protocol UserInterface {
     func wait()
 }
 
-extension UserInterface {
+extension IOInterface {
     func input(_ prompt: String) -> String {
         return input(prompt, validate: nil)
     }
