@@ -1,4 +1,18 @@
-// The Swift Programming Language
-// https://docs.swift.org/swift-book
+import Foundation
 
-print("Hello, world!")
+let app = App.shared
+
+app
+    .setUserInterface(interface: TerminalInterface.shared)
+    .registerCommand(
+        command: ChargeCommand(
+            userModel: UserModel.shared,
+            userInterface: TerminalInterface.shared
+        )
+    )
+    .registerCommand(
+        command: PrintInfoCommand(
+            userInterface: TerminalInterface.shared
+        )
+    )
+    .run()
