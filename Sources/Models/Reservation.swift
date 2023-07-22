@@ -1,5 +1,7 @@
 struct Reservation: Model {
-    var id: ID = { Identifier.shared.get(from: User.self) }()
+    static var name: String { "reservations" }
+    
+    var id: ID = 0
     var userId: ID
     var roomId: ID
     var checkIn: Int // timestamp

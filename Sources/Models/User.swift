@@ -1,5 +1,7 @@
 struct User: Model {
-    var id: ID = { Identifier.shared.get(from: User.self) }()
+    static var name: String { "users" }
+    
+    var id: ID = 0
     var name: String
     var point: Int
 }

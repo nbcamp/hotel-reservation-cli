@@ -16,7 +16,7 @@ class PrintInfoCommand: Command {
         io.output("1박 기준 금액입니다.")
         
         for room in rooms {
-            io.output("\(room.id)번 객실 \(room.rate)원")
+            io.output("\(room.id)번 객실 \(room.price)원")
         }
 
         io.output("계속하시려면 엔터를 눌러주세요...")

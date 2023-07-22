@@ -1,8 +1,6 @@
 import Foundation
 
 protocol IOInterface {
-    static var shared: Self { get }
-
     func output(_ message: String)
     func input(_ prompt: String, validate: ((String) -> Bool)?) -> String
     func wait()
