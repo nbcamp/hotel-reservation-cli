@@ -4,17 +4,19 @@ class ChargeCommand: Command {
     var name: String { "호텔 포인트 충전" }
 
     var io: IOInterface
-    var user: User
+    var userRepo: Repository<User>
 
     init(
         io: IOInterface,
-        user: User
+        userRepo: Repository<User>
     ) {
         self.io = io
-        self.user = user
+        self.userRepo = userRepo
     }
 
     func execute() {
+        var user = userRepo.findOne(where: ["name": "jinyongp"])!
+        
         io.output("\n[\(name) 서비스]")
         io.output("현재 보유 중이신 포인트는 \(user.point)P 입니다.")
         while true {
@@ -39,8 +41,8 @@ class ChargeCommand: Command {
                 io.output("[ERROR] 0보다 작은 값으로 변경할 수 없습니다.")
                 continue
             }
-            // TODO:
-//            user.point = point
+            user.point = point
+            userRepo.update(entity: user)
             break
         }
         io.output("\n포인트 충전에 성공했습니다. 총 보유하신 포인트: \(user.point)P")
