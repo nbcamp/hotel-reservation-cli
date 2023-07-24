@@ -25,13 +25,14 @@ class SQLiteDB: Database {
 
             var rows: [[String: Any]] = []
             for values in statement {
-                var dict: [String: Any] = [:]
+                var row: [String: Any] = [:]
                 for (name, value) in zip(columns, values) {
-                    dict[name] = value
+                    if let value = value {
+                        row.updateValue(value, forKey: name)
+                    }
                 }
-                rows.append(dict)
+                rows.append(row)
             }
-
             return rows
         } catch {
             print(error)
@@ -46,7 +47,7 @@ class SQLiteDB: Database {
                     id          INTEGER     NOT NULL    PRIMARY KEY AUTOINCREMENT,
                     name        TEXT        NOT NULL,
                     point       INTEGER     DEFAULT     0,
-                    created_at  TIMESTAMP   DEFAULT     CURRENT_TIMESTAMP
+                    createdAt   TIMESTAMP   DEFAULT     CURRENT_TIMESTAMP
                 );
             """)
         }
@@ -56,7 +57,7 @@ class SQLiteDB: Database {
                 CREATE TABLE rooms (
                     id          INTEGER     NOT NULL    PRIMARY KEY AUTOINCREMENT,
                     price       INTEGER     DEFAULT     0,
-                    created_at  TIMESTAMP   DEFAULT     CURRENT_TIMESTAMP
+                    createdAt   TIMESTAMP   DEFAULT     CURRENT_TIMESTAMP
                 );
             """)
         }
@@ -65,11 +66,12 @@ class SQLiteDB: Database {
             try connection.execute("""
                 CREATE TABLE reservations (
                     id          INTEGER     NOT NULL    PRIMARY KEY AUTOINCREMENT,
-                    user_id     INTEGER     NOT NULL,
-                    room_id     INTEGER     NOT NULL,
-                    check_in    TIMESTAMP,
-                    check_out   TIMESTAMP,
-                    created_at  TIMESTAMP   DEFAULT CURRENT_TIMESTAMP
+                    userId      INTEGER     NOT NULL,
+                    roomId      INTEGER     NOT NULL,
+                    checkIn     TIMESTAMP   DEFAULT NULL,
+                    checkOut    TIMESTAMP   DEFAULT NULL,
+                    expiredAt   TIMESTAMP   DEFAULT NULL,
+                    createdAt   TIMESTAMP   DEFAULT CURRENT_TIMESTAMP
                 );
             """)
         }

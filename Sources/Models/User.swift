@@ -3,6 +3,6 @@ struct User: Model {
     
     var id: ID = 0
     var name: String
-    var point: Int
+    var point: Int = 0
 }
 

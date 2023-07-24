@@ -22,11 +22,9 @@ struct ModelIterator: IteratorProtocol, Sequence {
 extension Model {
     var _key: String { String(describing: type(of: Self.self)) }
 
-    static func instantiate(dict: [String: Any]) -> Self? {
+    static func instantiate(from dict: [String: Any]) -> Self? {
         guard let serialized = try? JSONSerialization.data(withJSONObject: dict) else { return nil }
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        guard let instance = try? decoder.decode(Self.self, from: serialized) else { return nil }
+        guard let instance = try? JSONDecoder().decode(Self.self, from: serialized) else { return nil }
         return instance
     }
 

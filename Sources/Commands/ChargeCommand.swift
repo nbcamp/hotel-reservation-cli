@@ -1,18 +1,10 @@
 import Foundation
 
-class ChargeCommand: Command {
+struct ChargeCommand: Command {
     var name: String { "호텔 포인트 충전" }
 
-    var io: IOInterface
-    var userRepo: Repository<User>
-
-    init(
-        io: IOInterface,
-        userRepo: Repository<User>
-    ) {
-        self.io = io
-        self.userRepo = userRepo
-    }
+    let io: IOInterface
+    let userRepo: Repository<User>
 
     func execute() {
         var user = userRepo.findOne(where: ["name": "jinyongp"])!

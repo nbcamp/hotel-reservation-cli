@@ -8,6 +8,7 @@ let database: Database = SQLiteDB.shared
 
 let userRepo = Repository<User>(database: database)
 let roomRepo = Repository<Room>(database: database)
+let reservationRepo = Repository<Reservation>(database: database)
 
 // <defaults>
 userRepo.create(entity: User(name: "jinyongp", point: 0))
@@ -20,6 +21,12 @@ roomRepo.create(entity: Room(price: 50_000))
 
 app.register(command: ChargeCommand(io: io, userRepo: userRepo))
 app.register(command: PrintInfoCommand(io: io, roomRepo: roomRepo))
-app.register(command: ConsoleExitCommand(io: io))
+app.register(command: ReservationCommand(
+    io: io,
+    userRepo: userRepo,
+    roomRepo: roomRepo,
+    reservationRepo: reservationRepo
+))
 
+app.register(command: ConsoleExitCommand(io: io))
 app.run(io: io)

@@ -6,4 +6,5 @@ struct Reservation: Model {
     var roomId: ID
     var checkIn: Int // timestamp
     var checkOut: Int // timestamp
+    var expiredAt: Int? // timestamp
 }
