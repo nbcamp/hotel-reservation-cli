@@ -19,8 +19,16 @@ class Repository<Entity: Model> {
         self.decoder = JSONDecoder()
     }
 
-    func findAll() -> [Entity] {
-        let rows = database?.execute("SELECT * FROM \(Entity.name)") ?? []
+    func findAll(
+        where : [String: Any] = [:],
+        null: [String] = [],
+        notNull: [String] = []
+    ) -> [Entity] {
+        let conditions = `where`.map { "`\($0.key)` = \"\($0.value)\"" }.joined(separator: " AND ")
+        let rows = database?.execute("""
+            SELECT * FROM \(Entity.name)
+            \(conditions.count > 0 ? "WHERE \(conditions)" : "")
+        """) ?? []
         return rows.map { Entity.instantiate(from: $0) }.compactMap { $0 }
     }
 

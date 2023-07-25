@@ -1,7 +1,7 @@
 import Foundation
 
 class UserDefaultsStorage: Storage {
-    static var shared: UserDefaultsStorage = UserDefaultsStorage()
+    static var shared: UserDefaultsStorage = .init()
     
     private lazy var defaults = UserDefaults.standard
 

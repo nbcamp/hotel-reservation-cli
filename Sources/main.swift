@@ -27,6 +27,12 @@ app.register(command: ReservationCommand(
     roomRepo: roomRepo,
     reservationRepo: reservationRepo
 ))
+app.register(command: MyReservationsCommand(
+    io: io,
+    userRepo: userRepo,
+    roomRepo: roomRepo,
+    reservationRepo: reservationRepo
+))
 
 app.register(command: ConsoleExitCommand(io: io))
 app.run(io: io)

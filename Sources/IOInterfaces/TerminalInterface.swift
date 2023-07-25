@@ -1,7 +1,7 @@
 import Foundation
 
 class TerminalInterface: IOInterface {
-    static let shared: TerminalInterface = TerminalInterface()
+    static let shared: TerminalInterface = .init()
     
     func output(_ message: String) {
         print(message)

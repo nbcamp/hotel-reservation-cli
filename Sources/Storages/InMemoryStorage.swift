@@ -1,7 +1,7 @@
 import Foundation
 
 class InMemoryStorage: Storage {
-    static var shared: InMemoryStorage = InMemoryStorage()
+    static var shared: InMemoryStorage = .init()
 
     private var storage: [String: String] = [:]
 

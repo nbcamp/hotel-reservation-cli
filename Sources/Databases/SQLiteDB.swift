@@ -2,7 +2,8 @@ import Foundation
 import SQLite
 
 class SQLiteDB: Database {
-    static let shared = SQLiteDB()
+    static let shared: SQLiteDB = .init()
+
     let connection: Connection
     var tables: [String: Table] = [:]
 
